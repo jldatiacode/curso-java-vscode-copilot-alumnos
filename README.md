@@ -8,11 +8,11 @@ Curso de 35 horas orientado a desarrolladores Java que migran a Visual Studio Co
 
 ## Estructura general del curso
 
-- Módulo 1. Migración a VS Code
-- Módulo 2. Control de versiones con Git
-- Módulo 3. Desarrollo Java 21 en VS Code
-- Módulo 4. Contenedores con Docker
-- Módulo 5. GitHub Copilot
+- Módulo 1. Introducción a VS Code (5 horas)
+- Módulo 2. Uso de VS Code con sistemas de control de versiones (5 horas)
+- Módulo 3. Integración de desarrollos en Java (11 horas)
+- Módulo 4. Contenerización en VS Code (6 horas)
+- Módulo 5. Introducción a GitHub Copilot (8 horas)
 - Proyecto integrador
 
 Cada módulo se publicará en su propia carpeta (`modulo-NN-.../`), organizada por temas y apartados. Cada práctica incluye un `README.md` con las instrucciones para ejecutarla.
