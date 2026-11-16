@@ -1,0 +1,40 @@
+[
+    {
+        "key": "ctrl+shift+alt+u",
+        "command": "editor.action.transformToUppercase",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+alt+p",
+        "command": "editor.action.insertSnippet",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == java",
+        "args": {
+            "snippet": "System.out.println(${1:mensaje});$0"
+        }
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.deleteLines",
+        "when": "textInputFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+1",
+        "command": "editor.action.quickFix",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == java"
+    },
+    {
+        "key": "ctrl+shift+o",
+        "command": "editor.action.organizeImports",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == java"
+    },
+    {
+        "key": "ctrl+f11",
+        "command": "workbench.action.debug.run",
+        "when": "editorLangId == java"
+    }
+]
