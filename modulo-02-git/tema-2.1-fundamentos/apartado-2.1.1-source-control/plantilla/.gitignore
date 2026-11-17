@@ -1,0 +1,14 @@
+# Archivos generados al compilar: nunca se suben al repositorio
+out/
+bin/
+*.class
+
+# Configuración personal del editor
+.vscode/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Variables de entorno locales (pueden contener secretos)
+.env
