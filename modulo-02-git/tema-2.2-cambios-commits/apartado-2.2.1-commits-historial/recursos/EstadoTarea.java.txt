@@ -1,0 +1,20 @@
+package curso.git;
+
+/**
+ * Estados por los que pasa una tarea.
+ */
+public enum EstadoTarea {
+    PENDIENTE("Pendiente"), EN_PROGRESO("En progreso"), COMPLETADA("Completada");
+
+    // Texto que se muestra al usuario en lugar del nombre de la constante.
+    private final String etiqueta;
+
+    EstadoTarea(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+    @Override
+    public String toString() {
+        return etiqueta;
+    }
+}
