@@ -1,0 +1,27 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ConfiguracionWorkspace (ejemplo del curso)",
+            "request": "launch",
+            "mainClass": "curso.vscode.ConfiguracionWorkspace",
+            "args": [
+                "argumento-1",
+                "argumento con espacios"
+            ],
+            "vmArgs": "-Dcurso.entorno=vscode",
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "CURSO_MODO": "launch-json"
+            },
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Archivo Java actual",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
