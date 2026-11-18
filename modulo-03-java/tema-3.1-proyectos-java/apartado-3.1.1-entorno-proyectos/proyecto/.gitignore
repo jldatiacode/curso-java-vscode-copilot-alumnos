@@ -1,0 +1,7 @@
+# Archivos generados al compilar
+out/
+bin/
+*.class
+
+# Configuración personal del editor
+.vscode/
