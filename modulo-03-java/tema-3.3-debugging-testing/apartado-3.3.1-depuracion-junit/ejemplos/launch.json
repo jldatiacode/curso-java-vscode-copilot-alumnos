@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Depurar MainDepuracion",
+            "request": "launch",
+            "mainClass": "curso.java.MainDepuracion",
+            "projectName": "gestor-tareas-depuracion",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "name": "Adjuntar a las pruebas de Maven (puerto 5005)",
+            "request": "attach",
+            "hostName": "localhost",
+            "port": 5005
+        }
+    ]
+}
