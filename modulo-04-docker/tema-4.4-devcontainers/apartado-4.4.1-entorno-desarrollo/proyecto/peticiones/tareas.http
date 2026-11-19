@@ -1,0 +1,35 @@
+# Peticiones de prueba de la API de tareas, arrancada dentro del Dev Container.
+# Se ejecutan con la extensión REST Client: clic en "Send Request" sobre cada petición.
+# VS Code reenvía el puerto 8080 del contenedor a localhost:8080.
+# Si al reenviarlo VS Code elige otro puerto local (vista Ports), cámbialo aquí.
+
+@base = http://localhost:8080/api
+
+### Estado de la API (comprobación de disponibilidad)
+GET {{base}}/estado
+
+### Listar todas las tareas
+GET {{base}}/tareas
+
+### Consultar una tarea
+GET {{base}}/tareas/2
+
+### Consultar una tarea inexistente (404)
+GET {{base}}/tareas/999
+
+### Crear una tarea (201)
+POST {{base}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Revisar los logs",
+  "descripcion": "Creada desde el archivo .http"
+}
+
+### Cambiar el estado de una tarea (200)
+PATCH {{base}}/tareas/3/estado
+Content-Type: application/json
+
+{
+  "estado": "EN_PROGRESO"
+}

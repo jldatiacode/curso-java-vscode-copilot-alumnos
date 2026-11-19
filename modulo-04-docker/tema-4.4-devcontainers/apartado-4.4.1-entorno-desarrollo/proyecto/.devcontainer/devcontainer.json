@@ -1,0 +1,47 @@
+// Configuración del CONTENEDOR DE DESARROLLO de este proyecto.
+// VS Code la usa con "Dev Containers: Reopen in Container".
+// Referencia de las propiedades: https://containers.dev/implementors/json_reference/
+{
+    // Nombre del entorno (aparece en la esquina inferior izquierda de VS Code)
+    "name": "Java 21 y Maven - Curso VS Code",
+
+    // Imagen del entorno: se construye con .devcontainer/Dockerfile
+    // (imagen oficial de Dev Containers para Java 21 más Maven).
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+
+    // Variables de entorno del contenedor (no se escriben aquí contraseñas ni tokens)
+    "containerEnv": {
+        "APP_MENSAJE": "API de tareas en el contenedor de desarrollo"
+    },
+
+    "customizations": {
+        "vscode": {
+            // Extensiones que se instalan DENTRO del contenedor
+            "extensions": [
+                "redhat.java",
+                "vscjava.vscode-java-debug",
+                "vscjava.vscode-java-test",
+                "vscjava.vscode-maven",
+                "vscjava.vscode-java-dependency",
+                "vmware.vscode-boot-dev-pack"
+            ]
+        }
+    },
+
+    // Puerto de Spring Boot reenviado a localhost del equipo
+    "forwardPorts": [8080],
+    "portsAttributes": {
+        "8080": {
+            "label": "API de tareas",
+            "onAutoForward": "notify"
+        }
+    },
+
+    // Se ejecuta una vez, al crear el contenedor: comprueba Java y Maven
+    "postCreateCommand": "java -version && mvn -version",
+
+    // Usuario sin privilegios con el que trabaja VS Code dentro del contenedor
+    "remoteUser": "vscode"
+}

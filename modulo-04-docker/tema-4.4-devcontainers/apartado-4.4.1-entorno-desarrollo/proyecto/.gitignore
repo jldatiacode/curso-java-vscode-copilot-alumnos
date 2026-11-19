@@ -1,0 +1,5 @@
+# Carpeta de salida de Maven
+target/
+
+# Configuración personal del editor
+.vscode/
