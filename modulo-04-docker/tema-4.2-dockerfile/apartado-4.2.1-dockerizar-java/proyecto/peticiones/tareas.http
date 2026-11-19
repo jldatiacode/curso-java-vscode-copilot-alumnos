@@ -1,0 +1,35 @@
+# Peticiones de prueba de la API de tareas en Docker.
+# Se ejecutan con la extensión REST Client: clic en "Send Request" sobre cada petición.
+# El contenedor debe estar en marcha y publicado en el puerto 18080 del host.
+# Si usas otro puerto del host, cámbialo aquí.
+
+@base = http://localhost:18080/api
+
+### Estado de la API (comprobación de disponibilidad)
+GET {{base}}/estado
+
+### Listar todas las tareas
+GET {{base}}/tareas
+
+### Consultar una tarea
+GET {{base}}/tareas/2
+
+### Consultar una tarea inexistente (404)
+GET {{base}}/tareas/999
+
+### Crear una tarea (201)
+POST {{base}}/tareas
+Content-Type: application/json
+
+{
+  "titulo": "Revisar los logs",
+  "descripcion": "Creada desde el archivo .http"
+}
+
+### Cambiar el estado de una tarea (200)
+PATCH {{base}}/tareas/3/estado
+Content-Type: application/json
+
+{
+  "estado": "EN_PROGRESO"
+}

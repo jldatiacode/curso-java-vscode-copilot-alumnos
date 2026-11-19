@@ -1,0 +1,25 @@
+# Archivos que NO se envían a Docker al construir la imagen (contexto de construcción).
+# Menos archivos: construcción más rápida y sin riesgo de copiar algo indebido.
+
+# Resultados de compilaciones locales: la imagen compila su propio JAR
+target/
+
+# Git y configuración de editores
+.git/
+.gitignore
+.vscode/
+.idea/
+.devcontainer/
+
+# Variables de entorno locales y registros
+.env
+.env.*
+*.log
+
+# Documentación y peticiones de prueba: no hacen falta para construir
+*.md
+peticiones/
+
+# Los propios archivos de Docker
+Dockerfile
+.dockerignore
