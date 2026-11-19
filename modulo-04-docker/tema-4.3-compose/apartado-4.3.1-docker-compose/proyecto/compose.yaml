@@ -1,0 +1,64 @@
+# Apartado 4.3: la API de tareas y un monitor que la consulta por la red interna.
+#
+#   docker compose up -d --build     Construye la imagen de la API y levanta los dos servicios
+#   docker compose ps                Estado de los servicios
+#   docker compose logs -f monitor   Lo que ve el monitor cada 10 segundos
+#   docker compose down              Detiene y elimina los contenedores y la red
+
+# Nombre del proyecto Compose: prefijo de contenedores y redes. Evita conflictos
+# con otros proyectos del equipo, aunque la carpeta se llame igual.
+name: curso-vscode-m4-compose
+
+services:
+
+  # Servicio 1: la API de tareas (Spring Boot), construida con el Dockerfile.
+  api:
+    build: .
+    image: curso-m4/tareas-compose:1.0
+    environment:
+      APP_MENSAJE: "API de tareas gestionada con Docker Compose"
+    ports:
+      # Solo desde este equipo (127.0.0.1): puerto 18081 del host -> 8080 del contenedor
+      - "127.0.0.1:18081:8080"
+    healthcheck:
+      # La API está sana si /api/estado responde. curl viene en la imagen eclipse-temurin.
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://localhost:8080/api/estado"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 30s
+    networks:
+      - tareas
+
+  # Servicio 2: monitor que comprueba la API cada INTERVALO segundos.
+  # Llega a ella por su NOMBRE DE SERVICIO (api) y su puerto INTERNO (8080),
+  # a través de la red de Compose. No publica ningún puerto en el host.
+  monitor:
+    image: alpine:3.24
+    # Usuario sin privilegios (nobody): el monitor no necesita ser root.
+    user: "65534:65534"
+    # Un proceso init ligero como PID 1: reenvía la señal de parada al shell,
+    # y docker compose stop/down detiene el monitor al momento.
+    init: true
+    environment:
+      URL_API: "http://api:8080/api/estado"
+      INTERVALO: "10"
+    # $$ evita que Compose sustituya las variables: las resuelve el shell del contenedor.
+    command:
+      - sh
+      - -c
+      - |
+        while true; do
+          echo "$$(date +%H:%M:%S) $$(wget -qO- "$$URL_API" || echo 'API no disponible')"
+          sleep "$$INTERVALO"
+        done
+    depends_on:
+      api:
+        # No arranca hasta que el healthcheck de la API es correcto.
+        condition: service_healthy
+    networks:
+      - tareas
+
+networks:
+  # Red propia de la composición: los servicios se encuentran por su nombre.
+  tareas:
