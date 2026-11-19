@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Curso VS Code: primer contenedor</title>
+    <style>
+        body { font-family: sans-serif; margin: 3rem; color: #222; }
+        code { background: #eee; padding: 0.1rem 0.3rem; }
+    </style>
+</head>
+<body>
+    <h1>Hola desde un contenedor</h1>
+    <p>Esta página la sirve <strong>nginx</strong> dentro del contenedor <code>curso-m4-web</code>.</p>
+    <p>El archivo está en tu equipo, en la carpeta <code>html</code> de tu copia de prácticas.
+       El contenedor lo lee a través de un <strong>montaje</strong> (bind mount) de solo lectura.</p>
+    <p>Edita este archivo en VS Code, guarda y recarga el navegador: el cambio aparece sin reiniciar el contenedor.</p>
+</body>
+</html>
